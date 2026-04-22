@@ -1,22 +1,22 @@
-rootProject.name = 'Doola Cord'
-
 pluginManagement {
-    includeBuild("../node_modules/@react-native/gradle-plugin")
-}
-
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
+rootProject.name = 'Doola Cord'
+
+// ربط React Native
+includeBuild('../node_modules/@react-native/gradle-plugin')
+
+// إعداد الوحدات
+apply from: new File(settingsDir, '../node_modules/@react-native-community/cli-platform-android/native_modules.gradle')
 applyNativeModulesSettingsGradle(settings)
 
 include ':app'
 
-// Expo autolinking
-apply from: file("../node_modules/expo/scripts/autolinking.gradle")
+// Expo (إذا تستخدمه)
+apply from: new File(settingsDir, '../node_modules/expo/scripts/autolinking.gradle')
 useExpoModules()
